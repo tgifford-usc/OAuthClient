@@ -1,0 +1,6 @@
+# Never commit these
+client_secret*.json
+.env*
+.vercel
+.DS_Store
+node_modules

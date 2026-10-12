@@ -5,7 +5,7 @@ This starter lets people **sign in with Google** on your web app, so your app ca
 
 - One JavaScript file to add to your project: `google-auth.js`
 - No server and no client secret needed
-- Deploys to Vercel as a normal static site
+- Deploys to Vercel or GitHub Pages as a normal static site
 
 ```
 google-auth.js   ← the sign-in library (don't edit)
@@ -29,8 +29,11 @@ This README assumes that you are already familiar with setting up an OAuth Clien
    | VS Code Live Server | `http://127.0.0.1:5500` **and** `http://localhost:5500` |
    | `npx serve` | `http://localhost:3000` |
    | Vercel | `https://your-project-name.vercel.app` |
+   | GitHub Pages | `https://your-username.github.io` |
 
    An origin has **no path and no trailing slash**. Write `https://my-app.vercel.app`, not `https://my-app.vercel.app/`.
+
+   You can ignore **Authorized redirect URIs**. This starter signs in with a pop-up and doesn't use them. If `https://www.google.com` is still there from the codelab, it does no harm, and you need it if you still want to use the codelab's `.http` requests.
 3. Click **Save**. It can take **5 minutes or more** for Google to start using the change.
 4. Go to **Google Auth Platform** → **Audience**. Under **Test users**, add the Google account(s) you'll sign in with. While the app is in "Testing" mode, **only test users can sign in**.
 5. Make sure the **Google Health API** is enabled: **APIs & Services** → **Library**.
@@ -47,7 +50,11 @@ This README assumes that you are already familiar with setting up an OAuth Clien
 3. Click **Sign in with Google**, choose your test account, and tick all the permission boxes.
 4. Click **Load data**.
 
-## Step 3 — Put it on Vercel
+## Step 3 — Put it online
+
+This is a static site: just HTML and JavaScript, with no server code and no build step. Choose **one** of these:
+
+### Option A: Vercel
 
 1. Push the folder to GitHub.
 2. In Vercel: **Add New → Project**, then import the repo. Use Framework Preset **Other**, and leave the build settings empty.
@@ -55,6 +62,16 @@ This README assumes that you are already familiar with setting up an OAuth Clien
 4. Add that URL to **Authorized JavaScript origins** (Step 1.2) and wait a few minutes.
 
 > Vercel "preview" URLs (the long ones with random letters) change on every deploy. Sign in using your main **production** URL.
+
+### Option B: GitHub Pages
+
+1. Push the folder to a **public** GitHub repo. `index.html` must be in the top folder of the repo.
+2. On GitHub, open the repo → **Settings** → **Pages**.
+3. Under **Build and deployment**, set **Source** to **Deploy from a branch**. Choose branch **main** and folder **/ (root)**, then click **Save**.
+4. Wait a minute or two, then refresh the Settings page. Your URL appears at the top, e.g. `https://your-username.github.io/your-repo/`.
+5. Add **only** `https://your-username.github.io` to **Authorized JavaScript origins** (Step 1.2). Don't include `/your-repo/`, because an origin can't contain a path. That one origin works for all of your GitHub Pages sites.
+
+> GitHub Pages updates on every push to `main`, but it can take a minute. If you don't see your change, hard-refresh with Ctrl+Shift+R (Cmd+Shift+R on Mac).
 
 ---
 
